@@ -134,9 +134,9 @@ html, body, main {
 }
 
 .carousel img {
-  width: 100%; /* Make images stretch to the container width */
+  width: 90%; /* Make images stretch to the container width */
   max-width: 400px;
-  height: 300px; /* Set a fixed height */
+  height: auto; /* Set a fixed height */
   object-fit: cover; /* Crop images to fill the space while maintaining aspect ratio */
   display: block; /* Remove unwanted spaces below images */
   border-radius: 10px; /* Add smooth corners */
@@ -464,6 +464,16 @@ html, body, main {
   gap: 3px;
   font-family: "Dancing Script", cursive;
   color:#5A0E2C;
+}
+
+@media screen and (max-width: 480px) {
+  .modal-content {
+    width: 90%; /* Make modal smaller on small screens */
+  }
+  .buttons {
+    flex-direction: row;
+    gap: 10px;
+  }
 }
 
 .modal-content h2 {
