@@ -1,0 +1,515 @@
+html, body, main {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(90deg, #ff0095, #ff2929 100%);
+}
+
+/* Container for falling petals */
+#falling-roses {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* Cover the whole screen */
+  z-index: 10000;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Style for each petal */
+.rose-petal {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-image: url('rose-petal.png'); /* Ensure the path is correct */
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 1.0;
+  animation: fall linear infinite;
+}
+
+/* Falling Animation */
+@keyframes fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.valentine-text {
+  font-family: "Dancing Script", cursive;
+  font-size: 20px; /* Slightly larger for better visibility */
+  font-weight: bold;
+  text-align: center;
+  color: #ffffff; /* White text */
+  margin-top: 10%;
+  opacity: 0; /* Initially hidden */
+  animation: fadeIn 2s ease-in-out forwards;
+  text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Smooth Fade-in Animation */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-40px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Glowing Animation */
+@keyframes glow {
+  0% {
+      text-shadow: 0px 0px 10px rgba(255, 150, 200, 0.7);
+  }
+  50% {
+      text-shadow: 0px 0px 25px rgba(255, 50, 90, 1);
+  }
+  100% {
+      text-shadow: 0px 0px 15px rgba(255, 150, 200, 0.7);
+  }
+}
+
+
+.music-btn {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, #ff0095, #ff2929);
+  color: white;
+  font-size: 15px;
+  font-family: "Dancing Script", cursive;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease-in-out;
+}
+
+.music-btn:hover {
+  transform: translateX(-50%) scale(1.1);
+  background: linear-gradient(to right, #ff006a, #d1008f);
+}
+
+
+#carousel {
+  position: relative;
+  height: 400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px;
+  box-shadow: 0px 0px 15px rgba(255, 50, 100, 0.5);
+  top: 40%;
+  border-radius: 20px;
+  transform: translateY(-50%);
+  overflow: hidden;
+  display: flex;
+  justify-content: center; /* Center align images */
+  align-items: center;
+  overflow: hidden; /* Prevent overflow issues */
+  background: linear-gradient(90deg, rgb(255, 0, 136), hsl(0, 100%, 51%)); /* Optional: Dark background for contrast */
+}
+
+#carousel .selected::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  filter: blur(10px);
+  z-index: -1;
+}
+
+.carousel img {
+  width: 100%; /* Make images stretch to the container width */
+  max-width: 400px;
+  height: 300px; /* Set a fixed height */
+  object-fit: cover; /* Crop images to fill the space while maintaining aspect ratio */
+  display: block; /* Remove unwanted spaces below images */
+  border-radius: 10px; /* Add smooth corners */
+  transition: transform 0.4s ease-in-out;
+}
+
+.carousel img:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+#carousel div {
+  position: absolute;
+  transition: transform 400ms, left 400ms, opacity 400ms, z-index 0s;
+  opacity: 1;
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 50px; /* Positioned between image and buttons */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 22px;
+  font-family: "Dancing Script", cursive; /* Romantic font */
+  font-weight: bold;
+  color: white; /* Bright text */
+  text-align: center;
+  background: rgba(255, 105, 180, 0.7); /* Soft pink background */
+  padding: 12px 20px;
+  border-radius: 20px;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out, bottom 0.5s ease-in-out;
+  box-shadow: 0px 4px 12px rgba(255, 50, 100, 0.6);
+  z-index: 10000000;
+}
+
+/* Ensure caption fades in when selected */
+#carousel-caption.show {
+  opacity: 1;
+  bottom: 30px;
+}
+
+.selected .carousel-caption {
+  bottom: 10px; /* Move up */
+  opacity: 1;
+}
+
+
+@media screen and (max-width: 1024px) {
+  #carousel {
+    width: 80%;
+    height: 350px;
+  }
+  #carousel div img {
+    border-radius: 15px 15px 0 0; /* Adjusted border-radius */
+  }
+  #carousel div.hideLeft img,
+  #carousel div.hideRight img,
+  #carousel div.prevLeftSecond img,
+  #carousel div.nextRightSecond img {
+    border-radius: 15px 15px 0 0; /* Adjusted border-radius */
+  }
+  #carousel div.prev img,
+  #carousel div.next img {
+    border-radius: 15px 15px 0 0; /* Adjusted border-radius */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #carousel {
+    width: 90%;
+    height: 300px;
+  }
+  #carousel div img {
+    border-radius: 20px 20px 0 0; /* Adjusted border-radius */
+  }
+
+  #carousel div.hideLeft img,
+  #carousel div.hideRight img,
+  #carousel div.prevLeftSecond img,
+  #carousel div.nextRightSecond img {
+    border-radius: 20px 20px 0 0; /* Adjusted border-radius */
+  }
+  #carousel div.prev img,
+  #carousel div.next img {
+    border-radius: 20px 20px 0 0; /* Adjusted border-radius */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #carousel {
+    width: 90%;
+    height: 250px;
+  }
+  #carousel div img {
+    border-radius: 25px 25px 0 0; /* Adjusted border-radius */
+  }
+  #carousel div.hideLeft img,
+  #carousel div.hideRight img,
+  #carousel div.prevLeftSecond img,
+  #carousel div.nextRightSecond img {
+    border-radius: 25px 25px 0 0; /* Adjusted border-radius */
+  }
+  #carousel div.prev img,
+  #carousel div.next img {
+    border-radius: 25px 25px 0 0; /* Adjusted border-radius */
+  }
+}
+
+#carousel div img {
+  width: 400px;
+  transition: width 400ms;
+  -webkit-user-drag: none;
+  box-shadow: rgb(38, 57, 77) 0px 20px 50px -10px;
+  border-radius: 20px 20px 0 0; /* Default border-radius */
+}
+#carousel div.hideLeft {
+  left: 0%;
+  opacity: 0;
+  transform: translateY(50%) translateX(-50%);
+}
+#carousel div.hideLeft img {
+  width: 200px;
+}
+#carousel div.hideRight {
+  left: 100%;
+  opacity: 0;
+  transform: translateY(50%) translateX(-50%);
+}
+#carousel div.hideRight img {
+  width: 200px;
+}
+#carousel div.prev {
+  z-index: 5;
+  left: 30%;
+  transform: translateY(50px) translateX(-50%);
+}
+#carousel img:hover {
+  cursor: all-scroll;
+}
+#carousel div.prev img {
+  width: 300px;
+}
+#carousel div.prevLeftSecond {
+  z-index: 4;
+  left: 15%;
+  transform: translateY(50%) translateX(-50%);
+  opacity: 0.7;
+}
+#carousel div.prevLeftSecond img {
+  width: 200px;
+}
+#carousel div.selected {
+  z-index: 10;
+  left: 50%;
+  transform: translateY(0px) translateX(-50%);
+}
+#carousel div.next {
+  z-index: 5;
+  left: 70%;
+  transform: translateY(50px) translateX(-50%);
+}
+#carousel div.next img {
+  width: 300px;
+}
+#carousel div.nextRightSecond {
+  z-index: 4;
+  left: 85%;
+  transform: translateY(50%) translateX(-50%);
+  opacity: 0.7;
+}
+#carousel div.nextRightSecond img {
+  width: 200px;
+}
+
+/*previous or next buttons css*/
+
+.buttons {
+  position: absolute;
+  display: flex;
+  gap: 20px;
+  top: 84%;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 100px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.button-82-pushable {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  transition: filter 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.button-82-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: hsl(0deg 0% 0% / 0.25);
+  will-change: transform;
+  transform: translateY(2px);
+  transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+}
+
+.button-82-edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: linear-gradient(
+    to left,
+    hsl(340deg 100% 16%) 0%,
+    hsl(340deg 100% 32%) 8%,
+    hsl(340deg 100% 32%) 92%,
+    hsl(340deg 100% 16%) 100%
+  );
+}
+
+.button-82-front {
+  display: block;
+  position: relative;
+  padding: 12px 27px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  color: white;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.9);
+  background: linear-gradient(#ff006a, #d1008f);
+  will-change: transform;
+  transform: translateY(-4px);
+  transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+}
+
+@media (min-width: 768px) {
+  .button-82-front {
+    font-size: 1.25rem;
+    padding: 12px 42px;
+  }
+}
+
+.button-82-pushable:hover {
+  filter: brightness(110%);
+  -webkit-filter: brightness(110%);
+}
+
+.button-82-pushable:hover .button-82-front {
+  transform: translateY(-1px);
+  transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+}
+
+.button-82-pushable:active .button-82-front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+}
+
+.button-82-pushable:hover .button-82-shadow {
+  transform: translateY(4px);
+  transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+}
+
+.button-82-pushable:active .button-82-shadow {
+  transform: translateY(4px);
+  transition: transform 34ms;
+}
+
+.button-82-pushable:focus:not(:focus-visible) {
+  outline: none;
+}
+
+#openModalBtn{
+  position: absolute;
+  top: 93%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(to right, #ff1038, #ff006a);
+  color: white;
+  font-size: 10px;
+  font-family: "Dancing Script", cursive;
+  font-weight: bold;
+  padding: 8px 5px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.6);
+  transition: all 3s ease-in-out;
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stays fixed on the screen */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000; /* Ensures it's on top of everything */
+}
+
+
+
+.modal-content {
+  background: linear-gradient(90deg, #FFB6C1, #FF69B4); /* Dark gradient background */
+  padding: 30px;
+  text-align: center;
+  border-radius: 15px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  width: 80%;
+  z-index: 10001; /* Ensures it's on top of the modal background */
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-family: "Dancing Script", cursive;
+  color:#5A0E2C;
+}
+
+.modal-content h2 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  text-shadow: 0px 5px 5px rgb(233, 233, 233);
+}
+
+.modal-content p {
+  font-size: 1.5rem;
+  text-align: left;
+  font-weight: bold;
+}
+
+.modal-header {
+  font-family: "Dancing Script", cursive;
+  font-size: 24px;
+  color: #ff69b4;
+  margin-bottom: 20px;
+}
+
+.modal-body {
+  font-family: "Arial", sans-serif;
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.closeModalBtn {
+  background: #8B0000;
+  color: white;
+  font-size: 13px;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+
+.closeModalBtn:hover {
+  background: linear-gradient(to right, #ff1493, #ff69b4);}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+<body>
+  <!-- Falling Roses Container -->
+<div id="falling-roses"></div>
+
+  <div class="valentine-text">
+    Happy Valentine's Day, <br> 💖My Love!💖
+</div>
+
+  <div class="main">
+       <!-- Music Button -->
+       <button id="music-button" class="music-btn">🎵 Play Music</button>
+
+      <!-- Add an audio element -->
+      <audio id="carousel-music" loop>
+         <source src="Mohabbatein Love Themes - Instrumental.mp3" type="audio/mpeg">
+         Your browser does not support the audio element.
+      </audio>
+  </div>
+  <div id="carousel" class="carousel">
+    <div id='item_1' class="hideLeft">
+        <img src="image3.jpg">
+    </div>
+    <div id='item_2' class="prevLeftSecond">
+        <img src="image1.jpg">
+    </div>
+    <div id='item_3' class="prev">
+        <img src="image2.jpg">
+    </div>
+    <div id='item_4' class="selected">
+        <img src="image0.jpg">
+    </div>
+    <div id='item_5' class="next">
+        <img src="image4.jpg">
+    </div>
+    <div id='item_6' class="nextRightSecond">
+        <img src="image5.jpg">
+    </div>
+    <div id='item_7' class="hideRight">
+        <img src="image6.jpg">
+    </div>
+    <div id='item_8' class="hideRight">
+        <img src="image7.jpg">
+    </div>
+
+    <!-- The caption that will update dynamically -->
+    <h1 id="carousel-captio" class="carousel-caption">"You are my favorite kind of magic ❤️"</h1>
+   </div>
+    <div class="buttons">
+         <button class="button-82-pushable" role="button" id="prev"><span class="button-82-shadow"></span><span class="button-82-edge"></span><span class="button-82-front text">Previous</span></button>   
+         <button class="button-82-pushable" role="button" id="next"><span class="button-82-shadow"></span><span class="button-82-edge"></span><span class="button-82-front text">Next</span></button>
+    </div>
+
+   <!-- Button to Open Modal -->
+<button id="openModalBtn">Show Message</button>
+
+<!-- Modal -->
+<div class="modal" id="messageModal">
+     <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Happy Valentine's Day! <br> Shubham</h2>
+            <p>From the moment you became a part of my life, every day has been filled with warmth, laughter, and love. You are not just my love, but my best friend, my greatest supporter, and my most cherished blessing.
+             Every smile you share, every little moment we spend together, and every memory we create is a reminder of how lucky I am to have you. You make my world brighter, my heart fuller, and my life more meaningful.
+             On this special day, I just want to remind you how deeply I love you. No matter where life takes us, my heart will always belong to you.
+             
+             💖 Forever yours, with all my love 💖</p>
+        <div class="modal-footer">
+         <button class="closeModalBtn" onclick="closeModal()">Close</button>
+        </div>
+     </div>
+   </div>
+  <script src="script.js"></script>
+</div>
+</body>
+</html>
